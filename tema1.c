@@ -1,6 +1,7 @@
+#define EL 1001
+
 #include <stdio.h>
 int main(){
-	#define EL 1001
 	char r;
 	int g,m,n,k,i=0,j=0,sv,a[EL][EL],c[EL][EL];
 	float pop,popmax=0;
@@ -10,14 +11,17 @@ int main(){
 			scanf("%d",&a[i][j]);
 		}
 	}
-    switch(r){
+	//matricea poate fi plan sau toroid
+   switch(r){
 		case 'P':{
+			//numarul de generatii
 			for(g=0;g<k;g++){
 				pop=0;
 				for(i=0;i<n;i++){
 					for(j=0;j<m;j++){
 								sv=0;
 								pop=pop+a[i][j];
+								//9 cazuri diferite
 								if(i==0){
 									if(j==0){
 										sv=a[i][j+1]+a[i+1][j]+a[i+1][j+1];
@@ -51,6 +55,7 @@ int main(){
 										sv=a[i-1][j-1]+a[i-1][j]+a[i-1][j+1]+a[i][j-1]+a[i][j+1]+a[i+1][j-1]+a[i+1][j]+a[i+1][j+1];
 										}
 									}
+									//starea celulei in generatia urmatoare
 								if(sv<2){
 									c[i][j]=0;
 								}
@@ -76,12 +81,14 @@ int main(){
 				}
 				break;}
 		case 'T':{
+			//numarul de generatii
 			for(g=0;g<k;g++){
 				pop=0;
 				for(i=0;i<n;i++){
 					for(j=0;j<m;j++){
 							sv=0;
 							pop=pop+a[i][j];
+							//9 cazuri diferite
 								if(i==0){
 									if(j==0){
 										sv=a[i][j+1]+a[i+1][j]+a[i+1][j+1]+a[i][m-1]+a[i+1][m-1]+a[n-1][j]+a[n-1][j+1]+a[n-1][m-1];
@@ -115,6 +122,7 @@ int main(){
 										sv=a[i-1][j-1]+a[i-1][j]+a[i-1][j+1]+a[i][j-1]+a[i][j+1]+a[i+1][j-1]+a[i+1][j]+a[i+1][j+1];
 										}
 									}
+									//starea celulei in generatia urmatoare
 								if(sv<2){
 									c[i][j]=0;
 								}
